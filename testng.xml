@@ -6,7 +6,8 @@
     <test name="Test">
         <groups>
             <run>
-<!--                <include name="example"/>-->
+                <include name="dataLogin"/>
+                <exclude name="example"/>
 <!--                <include name="regression"/>-->
             </run>
         </groups>

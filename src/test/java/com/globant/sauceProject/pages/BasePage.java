@@ -15,7 +15,7 @@ public class BasePage {
     private WebDriver driver;
     private static final String URL = "https://www.saucedemo.com/";
     private static final int TIMEOUT = 8;
-    private WebDriverWait wait;
+    protected WebDriverWait wait;
     private Logger logs = Logger.getLogger(BasePage.class.getName());
 
     @FindBy(className = "login_logo")

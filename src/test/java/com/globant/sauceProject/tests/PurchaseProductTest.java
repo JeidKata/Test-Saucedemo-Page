@@ -5,6 +5,7 @@ import com.globant.sauceProject.pages.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -19,6 +20,7 @@ public class PurchaseProductTest {
     private LoginPage login;
     private ProductsPage products;
     private CartPage cart;
+    private CheckoutInformationPage checkoutInformation;
 
     @BeforeMethod
     public void setUp() {
@@ -31,6 +33,7 @@ public class PurchaseProductTest {
         login = new LoginPage(driver);
         products = new ProductsPage(driver);
         cart = new CartPage(driver);
+        checkoutInformation = new CheckoutInformationPage(driver);
     }
 
     @Test(groups = {"dataLogin"}, description = "Inicio sesión", dataProvider = "loginData", dataProviderClass = Data.class)
@@ -48,5 +51,15 @@ public class PurchaseProductTest {
         logs.info("Productos agregados al carrito y se ha hecho clic en el enlace del carrito de compras.");
         cart.getCartItemCount();
         cart.clickCheckoutButton();
+        testCheckout("Juan", "Pérez", "12345");
+    }
+//    @AfterMethod
+    public void testCheckout(String firstName, String lastName, String postalCode) {
+        logs.info("Probando Checkout con: ");
+        logs.info("First Name: " + firstName + System.lineSeparator() +
+                "Last Name: " + lastName + System.lineSeparator() +
+                "Postal Code: " + postalCode + System.lineSeparator());
+        checkoutInformation.enterCheckoutInformation(firstName, lastName, postalCode);
+        checkoutInformation.clickContinueButton();
     }
 }

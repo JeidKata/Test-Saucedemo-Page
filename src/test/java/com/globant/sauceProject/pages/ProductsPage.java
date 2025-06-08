@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.openqa.selenium.support.PageFactory.initElements;
 
@@ -15,7 +14,7 @@ public class ProductsPage extends BasePage {
     @FindBy(className = "shopping_cart_link")
     private WebElement shoppingCartLink;
 
-    public ProductsPage(WebDriver driver, String url, WebDriverWait wait) {
+    public ProductsPage(WebDriver driver, String url) {
         super(driver);
         driver.get(url);
         initElements(driver, this);

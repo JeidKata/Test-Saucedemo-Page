@@ -18,7 +18,6 @@ public class ProductsPage extends BasePage {
     public ProductsPage(WebDriver driver, String url, WebDriverWait wait) {
         super(driver);
         driver.get(url);
-
         initElements(driver, this);
     }
 

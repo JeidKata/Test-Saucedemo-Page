@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.logging.Logger;
 
-public class LoginPage {
+public class LoginPage extends BasePage{
     private WebDriver driver;
     private WebDriverWait wait;
     public Logger logs = Logger.getLogger(LoginPage.class.getName());
@@ -30,10 +30,10 @@ public class LoginPage {
      * Constructor para LoginPage.
      * driver Instancia de WebDriver.
      */
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(this.driver, this);
-        this.wait = new WebDriverWait(driver,  Duration.ofSeconds(5));
+    public LoginPage(WebDriver driver, String url) {
+        super(driver);
+        driver.get(url);
+        PageFactory.initElements(driver, this);
     }
 
     /**

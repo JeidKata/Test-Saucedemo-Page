@@ -34,4 +34,12 @@ public class CheckoutInformationPage extends BasePage{
         postalCodeField.sendKeys(postalCode);
         log.info("Checkout information entered: " + firstName + " " + lastName + ", Postal Code: " + postalCode);
     }
+
+    /**
+     * Metodo para hacer clic en el botón de continuar.
+     */
+    public void clickContinueButton() {
+        continueButton.click();
+        log.info("Clicked on the continue button.");
+    }
 }

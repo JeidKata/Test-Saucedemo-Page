@@ -4,6 +4,11 @@
         <listener class-name="com.globant.sauceProject.listeners.Listeners"></listener>
     </listeners>
     <test name="Test">
+        <parameter name="username" value="standard_user"></parameter>
+        <parameter name="password" value="secret_sauce"></parameter>
+        <parameter name="firstName" value="Juan"></parameter>
+        <parameter name="lastName" value="Perez"></parameter>
+        <parameter name="postalCode" value="123456"></parameter>
         <groups>
             <run>
                 <include name="dataLogin"/>

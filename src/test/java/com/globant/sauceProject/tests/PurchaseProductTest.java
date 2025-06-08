@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.util.logging.Logger;
@@ -36,8 +37,10 @@ public class PurchaseProductTest {
         checkoutInformation = new CheckoutInformationPage(driver);
     }
 
-    @Test(groups = {"dataLogin"}, description = "Inicio sesión", dataProvider = "loginData", dataProviderClass = Data.class)
-    public void testLogin (String username, String password) {
+    @Parameters ({"username", "password", "firstName", "lastName", "postalCode"})
+    @Test(groups = {"dataLogin"})
+//    , description = "Inicio sesión",dataProvider = "loginData", dataProviderClass = Data.class)
+    public void testLogin (String username, String password, String firstName, String lastName, String postalCode) {
         logs.info("Probando Login con: ");
         logs.info("Username: " + username + System.lineSeparator() +
                 "Contraseña: " + password + System.lineSeparator());
@@ -51,7 +54,8 @@ public class PurchaseProductTest {
         logs.info("Productos agregados al carrito y se ha hecho clic en el enlace del carrito de compras.");
         cart.getCartItemCount();
         cart.clickCheckoutButton();
-        testCheckout("Juan", "Pérez", "12345");
+        checkoutInformation.enterCheckoutInformation(firstName, lastName, postalCode);
+        checkoutInformation.clickContinueButton();
     }
 //    @AfterMethod
     public void testCheckout(String firstName, String lastName, String postalCode) {

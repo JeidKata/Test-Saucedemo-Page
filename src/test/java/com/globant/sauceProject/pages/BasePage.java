@@ -13,7 +13,6 @@ import java.time.Duration;
 
 public class BasePage {
     private WebDriver driver;
-    private static final String URL = "https://www.saucedemo.com/";
     private static final int TIMEOUT = 8;
     protected WebDriverWait wait;
     private Logger logs = Logger.getLogger(BasePage.class.getName());
@@ -31,7 +30,7 @@ public class BasePage {
      * metodo para obtener el logo de la pagina.
      */
     public void getLogo(){
-        wait.until(ExpectedConditions.visibilityOf(logo));
+        this.wait.until(ExpectedConditions.visibilityOf(logo));
         logs.info("Logo is visible on the page.");
     }
 

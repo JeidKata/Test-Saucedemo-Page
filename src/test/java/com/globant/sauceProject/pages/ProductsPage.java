@@ -1,32 +1,41 @@
 package com.globant.sauceProject.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static org.openqa.selenium.support.PageFactory.initElements;
+import java.util.List;
 
 public class ProductsPage extends BasePage {
-    @FindBy(linkText = "Add to cart")
-    private WebElement addToCartButton;
+    @FindBy(css = ".inventory_item")
+    private List<WebElement> productList;
 
     @FindBy(className = "shopping_cart_link")
     private WebElement shoppingCartLink;
 
-    public ProductsPage(WebDriver driver, String url) {
+    public ProductsPage(WebDriver driver) {
         super(driver);
-        driver.get(url);
-        initElements(driver, this);
     }
 
     /**
      * Metodo para agregar 3 productos al carrito.
      */
     public void addThreeProductsToCart() {
-        for (int i = 0; i < 3; i++) {
-            addToCartButton.click();
-            System.out.println("Product " + (i + 1) + " added to cart.");
+        this.wait.until(ExpectedConditions.visibilityOfAllElements(productList));
+        if (productList != null && productList.size() >= 3) {
+            try{
+                for (int i = 0; i < 3; i++) {
+                    WebElement addToCartButton = productList.get(i).findElement(By.cssSelector(".btn_inventory"));
+                    addToCartButton.click();
+                    System.out.println("Added product " + (i + 1) + " to the cart.");
+                }
+            } catch (Exception e) {
+                System.out.println("Error while adding products: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Not enough products available to add to the cart.");
         }
     }
 

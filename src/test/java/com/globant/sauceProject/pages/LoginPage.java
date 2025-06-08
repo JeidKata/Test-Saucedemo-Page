@@ -1,7 +1,6 @@
 package com.globant.sauceProject.pages;
 
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.logging.Logger;
 
 public class LoginPage extends BasePage{
@@ -30,9 +28,8 @@ public class LoginPage extends BasePage{
      * Constructor para LoginPage.
      * driver Instancia de WebDriver.
      */
-    public LoginPage(WebDriver driver, String url) {
+    public LoginPage(WebDriver driver) {
         super(driver);
-        driver.get(url);
         PageFactory.initElements(driver, this);
     }
 

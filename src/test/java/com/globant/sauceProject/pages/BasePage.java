@@ -1,6 +1,7 @@
 package com.globant.sauceProject.pages;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,9 +14,9 @@ import java.time.Duration;
 
 public class BasePage {
     private WebDriver driver;
-    private static final int TIMEOUT = 8;
+    private static final int TIMEOUT = 10;
     protected WebDriverWait wait;
-    private Logger logs = Logger.getLogger(BasePage.class.getName());
+    protected Logger logs = Logger.getLogger(BasePage.class.getName());
 
     @FindBy(className = "login_logo")
     private WebElement logo;
@@ -32,6 +33,20 @@ public class BasePage {
     public void getLogo(){
         this.wait.until(ExpectedConditions.visibilityOf(logo));
         logs.info("Logo is visible on the page.");
+    }
+
+    /**
+     * metodo para manejar las alertas de la pagina.
+     */
+    public void handleAlert() {
+        try {
+            this.wait.until(ExpectedConditions.alertIsPresent());
+            Alert alert = this.driver.switchTo().alert();
+            alert.accept();
+            logs.info("Alert accepted.");
+        } catch (Exception e) {
+            logs.error("No alert present: " + e.getMessage());
+        }
     }
 
 }

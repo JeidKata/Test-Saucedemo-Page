@@ -38,8 +38,8 @@ public class PurchaseProductTest {
     }
 
     @Parameters ({"username", "password", "firstName", "lastName", "postalCode"})
-    @Test(groups = {"dataLogin"})
-//    , description = "Inicio sesión",dataProvider = "loginData", dataProviderClass = Data.class)
+    @Test
+//            (groups = {"dataLogin"}, description = "Inicio sesión",dataProvider = "loginData", dataProviderClass = Data.class)
     public void testLogin (String username, String password, String firstName, String lastName, String postalCode) {
         logs.info("Probando Login con: ");
         logs.info("Username: " + username + System.lineSeparator() +

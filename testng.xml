@@ -4,14 +4,14 @@
         <listener class-name="com.globant.sauceProject.listeners.Listeners"></listener>
     </listeners>
     <test name="Test">
-        <parameter name="username" value="standard_user"></parameter>
-        <parameter name="password" value="secret_sauce"></parameter>
-        <parameter name="firstName" value="Juan"></parameter>
-        <parameter name="lastName" value="Perez"></parameter>
-        <parameter name="postalCode" value="123456"></parameter>
+        <parameter name="username" value="standard_user"/>
+        <parameter name="password" value="secret_sauce"/>
+        <parameter name="firstName" value="Juan"/>
+        <parameter name="lastName" value="Perez"/>
+        <parameter name="postalCode" value="123456"/>
         <groups>
             <run>
-                <include name="dataLogin"/>
+<!--                <include name="dataLogin"/>-->
 <!--                <include name="regression"/>-->
             </run>
         </groups>

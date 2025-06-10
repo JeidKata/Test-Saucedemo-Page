@@ -15,7 +15,7 @@ public class LogoutTest extends BaseTest{
         LoginPage login = new LoginPage(driver);
         MenuSection menu = new MenuSection(driver);
 
-        base.getLogo();
+        menu.getLogo();
 
         logger.info("Testing Login with: \nUsername: " + username + System.lineSeparator() +
                 "Password: " + password + System.lineSeparator());

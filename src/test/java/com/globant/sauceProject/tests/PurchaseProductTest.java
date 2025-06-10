@@ -10,7 +10,7 @@ public class PurchaseProductTest extends BaseTest{
     @Test(description = "Verifica el flujo de compra completo.")
 //            (groups = {"dataLogin"}, description = "Inicio sesión",dataProvider = "loginData", dataProviderClass = Data.class)
     public void testPurchaseProductComplete (String username, String password, String firstName, String lastName, String postalCode) {
-        BasePage base = new BasePage(driver);
+        MenuSection menu = new MenuSection(driver);
         LoginPage login = new LoginPage(driver);
         ProductsPage products = new ProductsPage(driver);
         CartPage cart = new CartPage(driver);
@@ -19,7 +19,7 @@ public class PurchaseProductTest extends BaseTest{
         CheckoutCompletePage checkoutComplete = new CheckoutCompletePage(driver);
         logger.info("Testing Login with: \nUsername: " + username + System.lineSeparator() +
                 "Password: " + password + System.lineSeparator());
-        base.getLogo();
+        menu.getLogo();
         login.enterUsername(username);
         login.enterPassword(password);
         login.clickLoginButton();

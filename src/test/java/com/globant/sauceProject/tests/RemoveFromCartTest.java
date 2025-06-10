@@ -1,9 +1,6 @@
 package com.globant.sauceProject.tests;
 
-import com.globant.sauceProject.pages.BasePage;
-import com.globant.sauceProject.pages.CartPage;
-import com.globant.sauceProject.pages.LoginPage;
-import com.globant.sauceProject.pages.ProductsPage;
+import com.globant.sauceProject.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -14,12 +11,12 @@ public class RemoveFromCartTest extends BaseTest{
     @Test(description = "Verifica la eliminación de productos del carrito de compras.")
     public void testRemoveItemsFromCart(String username, String password) {
         /** Inicializar Page Objects específicos de la prueba*/
-        BasePage base = new BasePage(driver);
+        MenuSection menu = new MenuSection(driver);
         LoginPage login = new LoginPage(driver);
         ProductsPage products = new ProductsPage(driver);
         CartPage cart = new CartPage(driver);
 
-        base.getLogo();
+        menu.getLogo();
         logger.info("Testing Login with: \nUsername: " + username + System.lineSeparator() +
                 "Password: " + password + System.lineSeparator());
         login.enterUsername(username);

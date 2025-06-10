@@ -9,7 +9,7 @@ public class PurchaseProductTest extends BaseTest{
     @Parameters ({"username", "password", "firstName", "lastName", "postalCode"})
     @Test(description = "Verifica el flujo de compra completo.")
 //            (groups = {"dataLogin"}, description = "Inicio sesión",dataProvider = "loginData", dataProviderClass = Data.class)
-    public void testLogin (String username, String password, String firstName, String lastName, String postalCode) {
+    public void testPurchaseProductComplete (String username, String password, String firstName, String lastName, String postalCode) {
         BasePage base = new BasePage(driver);
         LoginPage login = new LoginPage(driver);
         ProductsPage products = new ProductsPage(driver);
@@ -17,25 +17,27 @@ public class PurchaseProductTest extends BaseTest{
         CheckoutInformationPage checkoutInformation = new CheckoutInformationPage(driver);
         CheckoutOverviewPage checkoutOverview = new CheckoutOverviewPage(driver);
         CheckoutCompletePage checkoutComplete = new CheckoutCompletePage(driver);
-        logger.info("Probando Login con: ");
-        logger.info("Username: " + username + System.lineSeparator() +
-                "Contraseña: " + password + System.lineSeparator());
+        logger.info("Testing Login with: \nUsername: " + username + System.lineSeparator() +
+                "Password: " + password + System.lineSeparator());
         base.getLogo();
         login.enterUsername(username);
         login.enterPassword(password);
         login.clickLoginButton();
-        logger.info("Probando agregar productos al carrito.");
+        logger.info("Trying to add products to the cart.");
         products.addThreeProductsToCart();
         products.clickShoppingCart();
-        logger.info("Productos agregados al carrito y se ha hecho clic en el enlace del carrito de compras.");
-        Assert.assertTrue(cart.getCartItemCount() > 0, "El carrito debería contener al menos un producto.");
+        logger.info("Products added to the cart and the shopping cart link has been clicked.");
+        Assert.assertTrue(cart.getCartItemCount() > 0, "The cart should contain at least one product.");
         cart.clickCheckoutButton();
+        logger.info("Proceeding to checkout information.");
         checkoutInformation.enterFirstName(firstName);
         checkoutInformation.enterLastName(lastName);
         checkoutInformation.enterPostalCode(postalCode);
         checkoutInformation.clickContinueButton();
+        logger.info("Proceeding to checkout overview.");
         checkoutOverview.isCheckoutOverviewPageLoaded();
         checkoutOverview.clickFinishButton();
+        logger.info("Proceeding to checkout complete.");
         checkoutComplete.isCheckoutComplete();
         checkoutComplete.clickBackHomeButton();
     }

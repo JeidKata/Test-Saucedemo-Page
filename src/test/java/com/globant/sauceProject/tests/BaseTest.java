@@ -1,7 +1,6 @@
 package com.globant.sauceProject.tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,6 +15,7 @@ import java.time.Duration;
 public class BaseTest {
     private static final String URL = "https://www.saucedemo.com/";
     protected WebDriver driver;
+    protected WebDriverWait wait;
     protected static final Logger logger = Logger.getLogger(BaseTest.class);
 
     /**
@@ -41,7 +41,7 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-extensions"); // Deshabilita extensiones
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Espera implícita
+        this.wait = new WebDriverWait(driver,Duration.ofSeconds(10));
         driver.get("https://www.saucedemo.com/");
         logger.info("Navigating to: https://www.saucedemo.com/");
     }
@@ -49,12 +49,12 @@ public class BaseTest {
     /**
      * Cierra el navegador después de cada metodo de prueba.
      */
-//    @AfterMethod
-//    public void teardown() {
-//        if (driver != null) {
-//            driver.quit();
-//            logger.info("Close browser.");
-//        }
-//        logger.info("Test configuration completed.");
-//    }
+    @AfterMethod
+    public void teardown() {
+        if (driver != null) {
+            driver.quit();
+            logger.info("Close browser.");
+        }
+        logger.info("Test configuration completed.");
+    }
 }

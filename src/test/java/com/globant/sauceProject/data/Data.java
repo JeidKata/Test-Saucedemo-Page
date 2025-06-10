@@ -15,4 +15,11 @@ public class Data {
                 {"visual_user", "secret_sauce"},
         };
     }
+
+    @DataProvider(name = "checkoutData")
+    public Object[][] checkoutData() {
+        return new Object[][]{
+                {"John", "Doe", "12345"},
+        };
+    }
 }

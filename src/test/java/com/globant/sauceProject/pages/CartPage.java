@@ -6,10 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 public class CartPage extends BasePage{
-    private Logger logs = Logger.getLogger(CartPage.class.getName());
 
     @FindBy(className = "cart_item")
     private List<WebElement> cartItemsList;
@@ -28,7 +26,7 @@ public class CartPage extends BasePage{
      * Obtiene el número de elementos en el carrito.
      * muestra El número de elementos actualmente en el carrito.
      */
-    public void getCartItemCount() {
+    public int getCartItemCount() {
         this.wait.until(ExpectedConditions.visibilityOf(cartContentsContainer));
         int itemCount = cartItemsList.size();
         if (itemCount > 0) {
@@ -36,13 +34,15 @@ public class CartPage extends BasePage{
         } else {
             this.logs.info("El carrito está vacío.");
         }
+        return itemCount;
     }
 
     /**
      * Metodo para hacer clic en el botón de checkout.
      */
     public void clickCheckoutButton() {
+        this.wait.until(ExpectedConditions.elementToBeClickable(checkoutButton));
         checkoutButton.click();
-        this.logs.info("Hizo clic en el botón de checkout.");
+        this.logs.info("Click on the checkout button.");
     }
 }

@@ -18,22 +18,11 @@ public class BasePage {
     protected WebDriverWait wait;
     protected Logger logs;
 
-    @FindBy(className = "login_logo")
-    private WebElement logo;
-
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
         this.logs = Logger.getLogger(this.getClass().getName());
         this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(TIMEOUT));
-    }
-
-    /**
-     * metodo para obtener el logo de la pagina.
-     */
-    public void getLogo(){
-        this.wait.until(ExpectedConditions.visibilityOf(logo));
-        logs.info("Logo is visible on the page.");
     }
 
     /**

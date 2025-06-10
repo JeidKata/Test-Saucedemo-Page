@@ -3,9 +3,13 @@ package com.globant.sauceProject.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class MenuSection extends BasePage{
+
+    @FindBy(className = "login_logo")
+    private WebElement logo;
 
     @FindBy(id = "react-burger-menu-btn")
     private WebElement menuButton;
@@ -15,6 +19,15 @@ public class MenuSection extends BasePage{
 
     public MenuSection(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
+    }
+
+    /**
+     * metodo para obtener el logo de la pagina.
+     */
+    public void getLogo(){
+        this.wait.until(ExpectedConditions.visibilityOf(logo));
+        logs.info("Logo is visible on the page.");
     }
 
     /**

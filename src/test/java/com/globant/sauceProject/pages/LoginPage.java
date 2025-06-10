@@ -1,6 +1,7 @@
 package com.globant.sauceProject.pages;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,6 +19,9 @@ public class LoginPage extends BasePage{
 
     @FindBy(id = "login-button")
     private WebElement loginButton;
+
+    @FindBy(css = "h3[data-test='error']")
+    private WebElement errorMessage;
 
     /**
      * Constructor para LoginPage.
@@ -62,6 +66,21 @@ public class LoginPage extends BasePage{
             return true;
         } catch (Exception e) {
             logs.warn("Login page is not displayed: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Metodo para verificar si el mensaje de error se muestra.
+     * Este metodo se utiliza para validar que un usuario bloqueado no pueda iniciar sesion.
+     */
+    public boolean isErrorMessageDisplayed() {
+        try {
+            wait.until(ExpectedConditions.visibilityOf(errorMessage));
+            logs.info("Error message is displayed for blocked user.");
+            return true;
+        } catch (Exception e) {
+            logs.warn("Error message is not displayed: " + e.getMessage());
             return false;
         }
     }

@@ -19,12 +19,14 @@ public class CheckoutOverviewPage extends BasePage{
     /**
      * Metodo para verificar si la página de vista previa del checkout se ha cargado correctamente.
      */
-    public void isCheckoutOverviewPageLoaded() {
+    public boolean isCheckoutOverviewPageLoaded() {
         try {
             this.wait.until(ExpectedConditions.visibilityOf(finishButton));
             logs.info("Checkout Overview page loaded successfully.");
+            return true;
         } catch (Exception e) {
             logs.info("Error loading Checkout Overview page: " + e.getMessage());
+            return false;
         }
     }
 

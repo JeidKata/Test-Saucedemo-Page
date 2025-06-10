@@ -19,7 +19,7 @@ public class CheckoutOverviewPage extends BasePage{
      */
     public void isCheckoutOverviewPageLoaded() {
         try {
-            this.wait.until(ExpectedConditions.titleContains("Checkout: Overview"));
+            this.wait.until(ExpectedConditions.visibilityOf(finishButton));
             logs.info("Checkout Overview page loaded successfully.");
         } catch (Exception e) {
             logs.info("Error loading Checkout Overview page: " + e.getMessage());

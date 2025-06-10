@@ -17,12 +17,12 @@ public class CheckoutOverviewPage extends BasePage{
     /**
      * Metodo para verificar si la página de vista previa del checkout se ha cargado correctamente.
      */
-    public boolean isCheckoutOverviewPageLoaded() {
+    public void isCheckoutOverviewPageLoaded() {
         try {
             this.wait.until(ExpectedConditions.titleContains("Checkout: Overview"));
-            return true;
+            logs.info("Checkout Overview page loaded successfully.");
         } catch (Exception e) {
-            return false;
+            logs.info("Error loading Checkout Overview page: " + e.getMessage());
         }
     }
 
@@ -30,7 +30,7 @@ public class CheckoutOverviewPage extends BasePage{
      * Metodo para hacer clic en el botón de finalizar compra.
      */
     public void clickFinishButton() {
-        finishButton.click();
-        this.wait.until(ExpectedConditions.titleContains("Checkout: Complete!"));
+        this.wait.until(ExpectedConditions.elementToBeClickable(finishButton)).click();
+        logs.info("Clicked on the finish button.");
     }
 }

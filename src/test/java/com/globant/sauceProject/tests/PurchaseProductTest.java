@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 import java.util.logging.Logger;
 
-public class PurchaseProductTest {
+public class PurchaseProductTest extends BaseTest{
 
     public Logger logs = Logger.getLogger(LogoutTest.class.getName());
     private static final String URL = "https://www.saucedemo.com/";
@@ -22,6 +22,7 @@ public class PurchaseProductTest {
     private ProductsPage products;
     private CartPage cart;
     private CheckoutInformationPage checkoutInformation;
+    private CheckoutOverviewPage checkoutOverview;
 
     @BeforeMethod
     public void setUp() {
@@ -35,6 +36,7 @@ public class PurchaseProductTest {
         products = new ProductsPage(driver);
         cart = new CartPage(driver);
         checkoutInformation = new CheckoutInformationPage(driver);
+        checkoutOverview = new CheckoutOverviewPage(driver);
     }
 
     @Parameters ({"username", "password", "firstName", "lastName", "postalCode"})
@@ -54,16 +56,22 @@ public class PurchaseProductTest {
         logs.info("Productos agregados al carrito y se ha hecho clic en el enlace del carrito de compras.");
         cart.getCartItemCount();
         cart.clickCheckoutButton();
-        checkoutInformation.enterCheckoutInformation(firstName, lastName, postalCode);
+        checkoutInformation.enterFirstName(firstName);
+        checkoutInformation.enterLastName(lastName);
+        checkoutInformation.enterPostalCode(postalCode);
+//        checkoutInformation.enterCheckoutInformation(firstName, lastName, postalCode);
         checkoutInformation.clickContinueButton();
+//        checkoutOverview.isCheckoutOverviewPageLoaded();
+        checkoutOverview.clickFinishButton();
+
     }
 //    @AfterMethod
-    public void testCheckout(String firstName, String lastName, String postalCode) {
-        logs.info("Probando Checkout con: ");
-        logs.info("First Name: " + firstName + System.lineSeparator() +
-                "Last Name: " + lastName + System.lineSeparator() +
-                "Postal Code: " + postalCode + System.lineSeparator());
-        checkoutInformation.enterCheckoutInformation(firstName, lastName, postalCode);
-        checkoutInformation.clickContinueButton();
-    }
+//    public void testCheckout(String firstName, String lastName, String postalCode) {
+//        logs.info("Probando Checkout con: ");
+//        logs.info("First Name: " + firstName + System.lineSeparator() +
+//                "Last Name: " + lastName + System.lineSeparator() +
+//                "Postal Code: " + postalCode + System.lineSeparator());
+//        checkoutInformation.enterCheckoutInformation(firstName, lastName, postalCode);
+//        checkoutInformation.clickContinueButton();
+//    }
 }

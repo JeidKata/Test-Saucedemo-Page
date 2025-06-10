@@ -29,13 +29,13 @@ public class ProductsPage extends BasePage {
                 for (int i = 0; i < 3; i++) {
                     WebElement addToCartButton = productList.get(i).findElement(By.cssSelector(".btn_inventory"));
                     addToCartButton.click();
-                    System.out.println("Added product " + (i + 1) + " to the cart.");
+                    logs.info("Added product " + (i + 1) + " to the cart.");
                 }
             } catch (Exception e) {
-                System.out.println("Error while adding products: " + e.getMessage());
+                logs.info("Error while adding products: " + e.getMessage());
             }
         } else {
-            System.out.println("Not enough products available to add to the cart.");
+            logs.info("Not enough products available to add to the cart.");
         }
     }
 
@@ -45,6 +45,6 @@ public class ProductsPage extends BasePage {
     public void clickShoppingCart() {
         this.wait.until(ExpectedConditions.visibilityOf(shoppingCartLink));
         shoppingCartLink.click();
-        System.out.println("Clicked on the shopping cart link.");
+        logs.info("Clicked on the shopping cart link.");
     }
 }

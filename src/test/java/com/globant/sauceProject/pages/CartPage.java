@@ -1,5 +1,6 @@
 package com.globant.sauceProject.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,11 +31,29 @@ public class CartPage extends BasePage{
         this.wait.until(ExpectedConditions.visibilityOf(cartContentsContainer));
         int itemCount = cartItemsList.size();
         if (itemCount > 0) {
-            this.logs.info("Número de productos en el carrito: " + itemCount);
+            this.logs.info("Number of products in the cart " + itemCount);
         } else {
-            this.logs.info("El carrito está vacío.");
+            this.logs.info("Cart is empty.");
         }
         return itemCount;
+    }
+
+    /**
+     * Elimina un producto del carrito por su nombre.
+     * productName El nombre del producto a eliminar.
+     */
+    public void removeProduct() {
+        wait.until(ExpectedConditions.visibilityOfAllElements(cartItemsList));
+        for (WebElement item : cartItemsList) {
+            String currentProductName = item.findElement(By.cssSelector(".inventory_item_name")).getText();
+            WebElement removeButton = item.findElement(By.cssSelector("button[id^='remove-']"));
+            removeButton.click();
+            logs.info("Product '" + currentProductName + "' removed from cart.");
+        }
+        for (WebElement item : cartItemsList) {
+            String currentProductName = item.findElement(By.cssSelector(".inventory_item_name")).getText();
+            logs.info("Product '" + currentProductName + "' is still in the cart.");
+        }
     }
 
     /**

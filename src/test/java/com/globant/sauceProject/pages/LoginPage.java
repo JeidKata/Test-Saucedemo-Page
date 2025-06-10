@@ -6,14 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.logging.Logger;
 
 public class LoginPage extends BasePage{
-    private WebDriver driver;
-    private WebDriverWait wait;
-    public Logger logs = Logger.getLogger(LoginPage.class.getName());
 
     @FindBy(id = "user-name")
     private WebElement userNameField;
@@ -66,7 +61,7 @@ public class LoginPage extends BasePage{
             logs.info("Login page is displayed.");
             return true;
         } catch (Exception e) {
-            logs.warning("Login page is not displayed: " + e.getMessage());
+            logs.warn("Login page is not displayed: " + e.getMessage());
             return false;
         }
     }

@@ -11,44 +11,44 @@ public class Listeners implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        logs.info("Test EMPEZO " + result.getName());
+        logs.info("Test started " + result.getName());
 
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        logs.info("Test PASO " + result.getName());
+        logs.info("Test Success ✅ " + result.getName());
 
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        logs.info("Test FALLO " + result.getName());
+        logs.info("Test Fail ❌ " + result.getName());
 
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        logs.info("Test SKIPPED " + result.getName());
+        logs.info("Test Skipped ⏭\uFE0F " + result.getName());
 
     }
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-        logs.info("Test CON ALGUNAS FALLAS " + result.getName());
+        logs.info("Test with some failures " + result.getName());
         // This method is not commonly used, so we can leave it empty or log a message if needed
 
     }
 
     @Override
     public void onStart(ITestContext context) {
-        logs.info("INICIO Test " + context.getName());
+        logs.info("--- STARTING TEST " + context.getName());
 
     }
 
     @Override
     public void onFinish(ITestContext context) {
-        logs.info("FINALIZO Test " + context.getName());
+        logs.info("--- FINISH TEST " + context.getName());
 
     }
 }

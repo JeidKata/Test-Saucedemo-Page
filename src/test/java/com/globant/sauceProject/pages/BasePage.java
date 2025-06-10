@@ -16,7 +16,7 @@ public class BasePage {
     private WebDriver driver;
     private static final int TIMEOUT = 10;
     protected WebDriverWait wait;
-    protected Logger logs = Logger.getLogger(BasePage.class.getName());
+    protected Logger logs;
 
     @FindBy(className = "login_logo")
     private WebElement logo;
@@ -24,6 +24,7 @@ public class BasePage {
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
+        this.logs = Logger.getLogger(this.getClass().getName());
         this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(TIMEOUT));
     }
 
